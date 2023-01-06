@@ -3,6 +3,7 @@ export interface IEncryptDecrypt {
     AESDecrypt(): void;
     askPasswordThenSet(): void;
     forgetPassword(): void;
+    CopyAESDecrypt(): void;
 }
 
 

@@ -32,6 +32,7 @@ export class EncryptDecrypt implements interfaces.IEncryptDecrypt, vscode.Dispos
 
             this.disposables.push(vscode.commands.registerCommand('encryptDecrypt.AESEncrypt', this.AESEncrypt, this));
             this.disposables.push(vscode.commands.registerCommand('encryptDecrypt.AESDecrypt', this.AESDecrypt, this));
+            this.disposables.push(vscode.commands.registerCommand('encryptDecrypt.CopyAESDecrypt', this.CopyAESDecrypt, this));
             this.disposables.push(vscode.commands.registerCommand('encryptDecrypt.ForgetPassword', this.forgetPassword, this));
             this.disposables.push(vscode.commands.registerCommand('encryptDecrypt.SetPassword', this.askPasswordThenSet, this));
 
@@ -161,6 +162,19 @@ export class EncryptDecrypt implements interfaces.IEncryptDecrypt, vscode.Dispos
                 // var decr = cryptoJs.AES.decrypt(txt, this.key).toString(cryptoJs.enc.Utf8);
                 // return decr;
             });
+        }, err => console.log('AESDecrypt error', err))
+    }
+
+    CopyAESDecrypt(): void {
+        this.askPassword().then((password) => {
+            this.changeText(txt => {
+                const decrypted  = cryptoJs.AES.decrypt(txt, this.context.globalState.get('ed.password')).toString(cryptoJs.enc.Utf8);
+                // copy to clipboard
+                vscode.env.clipboard.writeText(decrypted).then(() => {
+                    vscode.window.showInformationMessage('Copied to clipboard');
+                }, err => console.log('CopyAESDecrypt error', err))
+                return txt
+            })
         }, err => console.log('AESDecrypt error', err))
     }
 }

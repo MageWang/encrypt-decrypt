@@ -4,7 +4,7 @@
     "description": "Encrypt Decrypt AES CBC Mode",
     "icon": "images/logo.png",
     "version": "1.0.1",
-    "publisher": "qaqulya",
+    "publisher": "mage",
     "repository": {
         "type": "git",
         "url": "https://github.com/fuad-ibrahimzade/Encrypt-Decrypt"
@@ -18,6 +18,7 @@
     "activationEvents": [
         "onCommand:encryptDecrypt.AESEncrypt",
         "onCommand:encryptDecrypt.AESDecrypt",
+        "onCommand:encryptDecrypt.CopyAESDecrypt",
         "onCommand:encryptDecrypt.ForgetPassword",
         "onCommand:encryptDecrypt.SetPassword"
     ],
@@ -43,6 +44,11 @@
                 "command": "encryptDecrypt.SetPassword",
                 "title": "Set Password",
                 "category": "ED"
+            },
+            {
+                "command": "encryptDecrypt.CopyAESDecrypt",
+                "title": "Decode using AES Decryption and Copy to Clipboard",
+                "category": "ED"
             }
         ],
         "menus": {
@@ -62,6 +68,10 @@
                 {
                     "command": "encryptDecrypt.SetPassword",
                     "group": "ed"
+                },
+                {
+                    "command": "encryptDecrypt.CopyAESDecrypt",
+                    "group": "ed"
                 }
             ]
         }
@@ -80,9 +90,9 @@
         "@types/mocha": "^7.0.2",
         "@types/node": "^13.13.5",
         "@types/vscode": "^1.25.0",
-        "@typescript-eslint/eslint-plugin": "2.31.0",
-        "@typescript-eslint/parser": "2.31.0",
-        "eslint": "^7.0.0",
-        "typescript": "^3.8.3"
+        "@typescript-eslint/eslint-plugin": "^2.31.0",
+        "@typescript-eslint/parser": "^2.31.0",
+        "eslint": "^6.0.0",
+        "typescript": "^4.9.4"
     }
 }
